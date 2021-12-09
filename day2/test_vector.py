@@ -37,10 +37,6 @@ def vector_rand(N, ran_value = None):
     return Vector(*v)
 
 
-a = vector_rand(5)
-b = vector_rand(5, 6)
-print(a)
-print(b)
 # ==========================================================================
 
 
