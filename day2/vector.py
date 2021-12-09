@@ -108,9 +108,17 @@ class Vector(object):
         """
         if isinstance(other, Vector):
             #divided = tuple(self[i] / orther[i] for i in len(self))
-            divided = tuple(a / b for a, b in zip(self, other))
+            try:
+                (other[i] for i in range(len(self)))
+                divided = tuple(a / b for a, b in zip(self, other))
+            except:
+                return 0
         elif isinstance(other, (int, float)):
-            divided = tuple(a / other for a in self)
+            try:
+                other != 0
+                divided = tuple(a / other for a in self)
+            except:
+                return 0
         else: 
             raise ValueError("Division with type {} not supported".format(type(other)))
 

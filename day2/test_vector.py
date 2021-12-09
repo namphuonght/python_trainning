@@ -85,8 +85,13 @@ def cal_truediv(v, u):
         Returns:
             division value of two vectors (Vector)
     """
-    div = tuple(a / b for a, b in zip(v, u))
-    return Vector(*div)
+    try :
+        (u[i] != 0 for i in range(len(u)))
+        div = tuple(a / b for a, b in zip(v, u))
+        return Vector(*div)
+    except:
+        return 0
+    
 
 
 # ==========================================================================
