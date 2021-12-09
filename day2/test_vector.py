@@ -31,11 +31,21 @@ def vector_rand(N, ran_value = None):
     Returns a random vector
     """
     if not ran_value:
-        return Vector(np.zeros(N))
-    v = np.random.randint(ran_value, size=N)
+        zero_list = tuple()
+        for _ in range(N):
+            zero_list += (0,)
+        return Vector(*zero_list)
+    v = tuple()
+    for _ in range(N):
+        v += (random.randrange(0, ran_value),)
     return Vector(*v)
 
 
+
+t1 = vector_rand(5)
+t2 = vector_rand(5, 9)
+print(t1)
+print(t2)
 # ==========================================================================
 
 
@@ -217,9 +227,10 @@ def test_radd():
 
 
 def test_sub():
-    len_vector = 5
-    v = vector_rand(len_vector)
-    u = vector_rand(len_vector)
+    N = 5
+    value_rand = 9
+    v = vector_rand(N, value_rand)
+    u = vector_rand(N, value_rand)
     assert v - u == cal_add(v, u)
 
 
@@ -227,8 +238,9 @@ def test_sub():
 
 
 def test_rsub():
-    len_vector = 5
-    v = vector_rand(len_vector)
+    N = 5
+    value_rand = 9
+    v = vector_rand(N, value_rand)
     n = random.random()
     assert v - n == cal_radd(v, n)
 
