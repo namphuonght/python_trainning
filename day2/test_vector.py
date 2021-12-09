@@ -30,13 +30,15 @@ def vector_rand(N, ran_value = None):
     """
     Returns a random vector
     """
-    if not ran_value:
-        list_zero = [random.randrange(0, 1) for _ in range(N)]       
-        return Vector(*list_zero)
-    v = [random.randrange(0, ran_value) for _ in range(N)]
-    return Vector(*v)
+    if not ran_value:      
+        return Vector(*[random.randrange(0, 1) for _ in range(N)])
+    return Vector(*[random.randrange(0, ran_value) for _ in range(N)])
 
 
+a = vector_rand(5)
+b = vector_rand(5, 6)
+print(a)
+print(b)
 # ==========================================================================
 
 
