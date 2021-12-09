@@ -35,10 +35,6 @@ def vector_rand(N, ran_value = None):
     return Vector(*[random.randrange(0, ran_value) for _ in range(N)])
 
 
-a = vector_rand(5)
-b = vector_rand(5, 6)
-print(a)
-print(b)
 # ==========================================================================
 
 
