@@ -26,13 +26,13 @@ from vector import Vector
 # ==========================================================================
 
 
-def vector_rand(N, length = None):
+def vector_rand(N, ran_value = None):
     """
     Returns a random vector
     """
-    if not length:
-        return Vector(np.random.randint(N, size =1))
-    v = np.random.randint(length, size=N)
+    if not ran_value:
+        return Vector(np.zeros(N))
+    v = np.random.randint(ran_value, size=N)
     return Vector(*v)
 
 
@@ -49,7 +49,7 @@ def cal_mul(v, u):
         Returns:
             dot product value of two vectors (int)
     """
-    return sum(a * b for a, b in zip(u, v))
+    return sum(a * b for a, b in zip(v, u))
 
 
 # ==========================================================================
@@ -105,7 +105,7 @@ def cal_add(v, u):
             addition value of two vectors (Vector)
 
     """
-    add = tuple(a + b for a, b in zip(u, v))
+    add = tuple(a + b for a, b in zip(v, u))
     return Vector(add)
 
 # ==========================================================================
@@ -164,9 +164,9 @@ def cal_rsub(u, n):
 
 def test_mul():
     N = 5
-    length = 10
-    v = vector_rand(N)
-    u = vector_rand(N)
+    value_rand = 10
+    v = vector_rand(N, value_rand)
+    u = vector_rand(N, value_rand)
     assert v * u == cal_mul(v, u)
 
 
@@ -175,8 +175,8 @@ def test_mul():
 
 def test_rmul():
     len_vector = 6
-    length = 10
-    v = vector_rand(len_vector, length)
+    value_rand = 10
+    v = vector_rand(len_vector, value_rand)
     n = random.random()
     assert v * n == cal_rmul(v, n)
 
@@ -185,9 +185,9 @@ def test_rmul():
 
 
 def test_truediv():
-    len_vector = 7
-    length = 3
-    v = vector_rand(len_vector, length)
+    len_vector = 5
+    value_rand = 10
+    v = vector_rand(len_vector, value_rand)
     u = vector_rand(len_vector)
     assert v / u  == cal_truediv(v, u)
 
@@ -207,8 +207,8 @@ def test_add():
 
 def test_radd():
     len_vector = 9
-    length = 5
-    v = vector_rand(len_vector, length)
+    value_rand = 5
+    v = vector_rand(len_vector, value_rand)
     n = random.random()
     assert v + n == cal_radd(v, n)
 
