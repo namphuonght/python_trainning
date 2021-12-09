@@ -31,21 +31,16 @@ def vector_rand(N, ran_value = None):
     Returns a random vector
     """
     if not ran_value:
-        zero_list = tuple()
-        for _ in range(N):
-            zero_list += (0,)
-        return Vector(*zero_list)
-    v = tuple()
-    for _ in range(N):
-        v += (random.randrange(0, ran_value),)
+        list_zero = [random.randrange(0, 1) for _ in range(N)]       
+        return Vector(*list_zero)
+    v = [random.randrange(0, ran_value) for _ in range(N)]
     return Vector(*v)
 
 
-
-t1 = vector_rand(5)
-t2 = vector_rand(5, 9)
-print(t1)
-print(t2)
+a = vector_rand(5)
+b = vector_rand(5, 6)
+print(a)
+print(b)
 # ==========================================================================
 
 
