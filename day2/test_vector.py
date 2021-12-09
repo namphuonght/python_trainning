@@ -18,6 +18,7 @@ __status__ = 'development'
 # =============================================================================
 
 import random
+import numpy as np
 
 from vector import Vector
 
@@ -25,18 +26,14 @@ from vector import Vector
 # ==========================================================================
 
 
-def vector_rand():
+def vector_rand(N, length = None):
     """
     Returns a random vector
     """
-    return Vector(random.randrange(0, 9), random.randrange(0, 9), random.randrange(0, 9))
-
-
-# ==========================================================================
-
-
-
-
+    if not length:
+        return Vector(np.random.randint(N, size =1))
+    v = np.random.randint(length, size=N)
+    return Vector(*v)
 
 
 # ==========================================================================
@@ -166,8 +163,10 @@ def cal_rsub(u, n):
 
 
 def test_mul():
-    v = vector_rand()
-    u = vector_rand()
+    N = 5
+    length = 10
+    v = vector_rand(N)
+    u = vector_rand(N)
     assert v * u == cal_mul(v, u)
 
 
@@ -175,7 +174,9 @@ def test_mul():
 
 
 def test_rmul():
-    v = vector_rand()
+    len_vector = 6
+    length = 10
+    v = vector_rand(len_vector, length)
     n = random.random()
     assert v * n == cal_rmul(v, n)
 
@@ -184,8 +185,10 @@ def test_rmul():
 
 
 def test_truediv():
-    v = vector_rand()
-    u = vector_rand()
+    len_vector = 7
+    length = 3
+    v = vector_rand(len_vector, length)
+    u = vector_rand(len_vector)
     assert v / u  == cal_truediv(v, u)
 
 
@@ -193,8 +196,9 @@ def test_truediv():
 
 
 def test_add():
-    v = vector_rand()
-    u = vector_rand()
+    len_vector = 8
+    v = vector_rand(len_vector)
+    u = vector_rand(len_vector)
     assert v + u == cal_add(v, u)
 
 
@@ -202,7 +206,9 @@ def test_add():
 
 
 def test_radd():
-    v = vector_rand()
+    len_vector = 9
+    length = 5
+    v = vector_rand(len_vector, length)
     n = random.random()
     assert v + n == cal_radd(v, n)
 
@@ -211,8 +217,9 @@ def test_radd():
 
 
 def test_sub():
-    v = vector_rand()
-    u = vector_rand()
+    len_vector = 5
+    v = vector_rand(len_vector)
+    u = vector_rand(len_vector)
     assert v - u == cal_add(v, u)
 
 
@@ -220,7 +227,8 @@ def test_sub():
 
 
 def test_rsub():
-    v = vector_rand()
+    len_vector = 5
+    v = vector_rand(len_vector)
     n = random.random()
     assert v - n == cal_radd(v, n)
 
