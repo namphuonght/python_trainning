@@ -35,9 +35,8 @@ def vector_rand():
 # ==========================================================================
 
 
-v = vector_rand()
-u = vector_rand()
-n = random.random()
+
+
 
 
 # ==========================================================================
@@ -162,6 +161,8 @@ def cal_rsub(u, n):
 
 
 def test_mul():
+    v = vector_rand()
+    u = vector_rand()
     assert v * u == cal_mul(v, u)
 
 
@@ -169,6 +170,8 @@ def test_mul():
 
 
 def test_rmul():
+    v = vector_rand()
+    n = random.random()
     assert v * n == cal_rmul(v, n)
 
 
@@ -176,6 +179,8 @@ def test_rmul():
 
 
 def test_truediv():
+    v = vector_rand()
+    u = vector_rand()
     assert v / u  == cal_truediv(v, u)
 
 
@@ -183,6 +188,8 @@ def test_truediv():
 
 
 def test_add():
+    v = vector_rand()
+    u = vector_rand()
     assert v + u == cal_add(v, u)
 
 
@@ -190,6 +197,8 @@ def test_add():
 
 
 def test_radd():
+    v = vector_rand()
+    n = random.random()
     assert v + n == cal_radd(v, n)
 
 
@@ -197,6 +206,8 @@ def test_radd():
 
 
 def test_sub():
+    v = vector_rand()
+    u = vector_rand()
     assert v - u == cal_add(v, u)
 
 
@@ -204,6 +215,8 @@ def test_sub():
 
 
 def test_rsub():
+    v = vector_rand()
+    n = random.random()
     assert v - n == cal_radd(v, n)
 
 
