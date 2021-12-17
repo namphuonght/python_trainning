@@ -87,14 +87,13 @@ def crawler_url(url):
 def crawler_content(url):
     html = requests.get(url)
     raw = BeautifulSoup(html.content, 'html.parser')
-    title = remove_tags(raw.find_all('h1'))
-    content = remove_tags(raw.find_all('p'))
+    text = raw.text
     img_src = []
     for img in raw.find_all('img'):
         src = str(img.get('src'))
         if img not in img_src and src.startswith('https://i1'):
             img_src.append(src)
-    return content, title, img_src
+    return text, img_src
 
 
 # =============================================================================
@@ -114,9 +113,9 @@ def save_file(args):
         for n in range(args.start_page, args.end_page+1):
             urls = crawler_url(args.url+f'-p{n}')  
             for url in urls:
-                content, title, img_src = crawler_content(url)
+                text, img_src = crawler_content(url)
                 f = open('list_content.txt', 'a', encoding='utf-8')
-                f.write(str(title)+str(content))
+                f.write(str(text))
                 for src in img_src:
                     file = open('list_img.txt', 'a', encoding='utf-8')
                     file.write(str(src)+'\n')
